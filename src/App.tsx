@@ -19,7 +19,7 @@ function App() {
   }, [state]);
 
   return (
-    <main className='my-4 flex flex-col container'>
+    <main className='my-4 flex flex-col container font-sans'>
       <BasicInfo {...doThings} />
       <div className='divider' />
       <StatPools {...doThings} />

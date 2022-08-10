@@ -169,7 +169,6 @@ export function reducer(state: State, action: Action): State {
         return { ...state, sheet: { ...state.sheet, skills } };
       })
       .with({ t: "setSkillProficiency" }, ({ id, proficiency }) => {
-        console.log(id, proficiency);
         let { skills } = state.sheet;
         skills = skills.map(sk => {
           if (sk.id === id) {
