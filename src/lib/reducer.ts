@@ -1,5 +1,6 @@
 import CharacterSheet, {
   CharacterType,
+  Skill,
   SkillProficiency,
   StatPoolName,
 } from "./characterSheet";
@@ -141,6 +142,42 @@ export function reducer(state: State, action: Action): State {
         edge = clamp(edge, 0, 6);
         let intellectPool = { ...state.sheet.intellectPool, edge };
         return { ...state, sheet: { ...state.sheet, intellectPool } };
+      })
+      // Skills
+      .with({ t: "addSkill" }, () => {
+        return {
+          ...state,
+          sheet: {
+            ...state.sheet,
+            skills: [...state.sheet.skills, new Skill()],
+          },
+        };
+      })
+      .with({ t: "removeSkill" }, ({ id }) => {
+        let { skills } = state.sheet;
+        skills = skills.filter(sk => sk.id !== id);
+        return { ...state, sheet: { ...state.sheet, skills } };
+      })
+      .with({ t: "setSkillName" }, ({ id, name }) => {
+        let { skills } = state.sheet;
+        skills = skills.map(sk => {
+          if (sk.id === id) {
+            return { ...sk, name };
+          }
+          return sk;
+        });
+        return { ...state, sheet: { ...state.sheet, skills } };
+      })
+      .with({ t: "setSkillProficiency" }, ({ id, proficiency }) => {
+        console.log(id, proficiency);
+        let { skills } = state.sheet;
+        skills = skills.map(sk => {
+          if (sk.id === id) {
+            return { ...sk, proficiency };
+          }
+          return sk;
+        });
+        return { ...state, sheet: { ...state.sheet, skills } };
       })
       .otherwise(_ => state)
   );

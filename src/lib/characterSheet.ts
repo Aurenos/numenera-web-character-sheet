@@ -35,7 +35,7 @@ class Describable {
 interface CollectionItem {
   id: string;
 
-  generateId(): string;
+  generateId: () => string;
 }
 
 export type StatPoolName = "Might" | "Speed" | "Intellect";
@@ -46,9 +46,16 @@ export class StatPool {
 }
 
 export type SkillProficiency = "Trained" | "Specialized" | "Inability";
-export class Skill {
+export class Skill implements CollectionItem {
+  id: string;
   name: string = "";
   proficiency: SkillProficiency = "Trained";
+
+  constructor() {
+    this.id = this.generateId();
+  }
+
+  generateId = () => "skill-" + Date.now();
 }
 
 export class SpecialAbility extends Describable implements CollectionItem {
@@ -59,9 +66,7 @@ export class SpecialAbility extends Describable implements CollectionItem {
     this.id = this.generateId();
   }
 
-  generateId() {
-    return "ability-" + Date.now();
-  }
+  generateId = () => "ability-" + Date.now();
 }
 
 export class Cypher extends Describable implements CollectionItem {
@@ -73,9 +78,7 @@ export class Cypher extends Describable implements CollectionItem {
     this.id = this.generateId();
   }
 
-  generateId() {
-    return "cypher-" + Date.now();
-  }
+  generateId = () => "cypher-" + Date.now();
 }
 
 export class InventoryItem extends Describable implements CollectionItem {
@@ -86,9 +89,7 @@ export class InventoryItem extends Describable implements CollectionItem {
     this.id = this.generateId();
   }
 
-  generateId() {
-    return "inventory-" + Date.now();
-  }
+  generateId = () => "inventory-" + Date.now();
 }
 
 export default CharacterSheet;
