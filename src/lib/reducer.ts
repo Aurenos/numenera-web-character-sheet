@@ -57,83 +57,56 @@ export function reducer(state: State, action: Action): State {
         return { ...state, sheet: { ...state.sheet, xp } };
       })
       // Stat Pool Maxima
-      .with(
-        { t: "setPoolMaximum", pool: P.when(pool => pool === "Might") },
-        ({ maxValue }) => {
-          maxValue = minCap(maxValue, 1);
-          let mightPool = { ...state.sheet.mightPool, maxValue };
-          return { ...state, sheet: { ...state.sheet, mightPool } };
-        }
-      )
-      .with(
-        { t: "setPoolMaximum", pool: P.when(pool => pool === "Speed") },
-        ({ maxValue }) => {
-          maxValue = minCap(maxValue, 1);
-          let speedPool = { ...state.sheet.speedPool, maxValue };
-          return { ...state, sheet: { ...state.sheet, speedPool } };
-        }
-      )
-      .with(
-        { t: "setPoolMaximum", pool: P.when(pool => pool === "Intellect") },
-        ({ maxValue }) => {
-          maxValue = minCap(maxValue, 1);
-          let intellectPool = { ...state.sheet.intellectPool, maxValue };
-          return { ...state, sheet: { ...state.sheet, intellectPool } };
-        }
-      )
+      .with({ t: "setPoolMaximum", pool: "Might" }, ({ maxValue }) => {
+        maxValue = minCap(maxValue, 1);
+        let mightPool = { ...state.sheet.mightPool, maxValue };
+        return { ...state, sheet: { ...state.sheet, mightPool } };
+      })
+      .with({ t: "setPoolMaximum", pool: "Speed" }, ({ maxValue }) => {
+        maxValue = minCap(maxValue, 1);
+        let speedPool = { ...state.sheet.speedPool, maxValue };
+        return { ...state, sheet: { ...state.sheet, speedPool } };
+      })
+      .with({ t: "setPoolMaximum", pool: "Intellect" }, ({ maxValue }) => {
+        maxValue = minCap(maxValue, 1);
+        let intellectPool = { ...state.sheet.intellectPool, maxValue };
+        return { ...state, sheet: { ...state.sheet, intellectPool } };
+      })
       // Stat Pool Curent Values
-      .with(
-        { t: "setPoolCurrent", pool: P.when(pool => pool === "Might") },
-        ({ currentValue }) => {
-          let mightPool = { ...state.sheet.mightPool };
-          currentValue = clamp(currentValue, 0, mightPool.maxValue);
-          mightPool.currentValue = currentValue;
-          return { ...state, sheet: { ...state.sheet, mightPool } };
-        }
-      )
-      .with(
-        { t: "setPoolCurrent", pool: P.when(pool => pool === "Speed") },
-        ({ currentValue }) => {
-          let speedPool = { ...state.sheet.speedPool };
-          currentValue = clamp(currentValue, 0, speedPool.maxValue);
-          speedPool.currentValue = currentValue;
-          return { ...state, sheet: { ...state.sheet, speedPool } };
-        }
-      )
-      .with(
-        { t: "setPoolCurrent", pool: P.when(pool => pool === "Intellect") },
-        ({ currentValue }) => {
-          let intellectPool = { ...state.sheet.intellectPool };
-          currentValue = clamp(currentValue, 0, intellectPool.maxValue);
-          intellectPool.currentValue = currentValue;
-          return { ...state, sheet: { ...state.sheet, intellectPool } };
-        }
-      )
+      .with({ t: "setPoolCurrent", pool: "Might" }, ({ currentValue }) => {
+        let mightPool = { ...state.sheet.mightPool };
+        currentValue = clamp(currentValue, 0, mightPool.maxValue);
+        mightPool.currentValue = currentValue;
+        return { ...state, sheet: { ...state.sheet, mightPool } };
+      })
+      .with({ t: "setPoolCurrent", pool: "Speed" }, ({ currentValue }) => {
+        let speedPool = { ...state.sheet.speedPool };
+        currentValue = clamp(currentValue, 0, speedPool.maxValue);
+        speedPool.currentValue = currentValue;
+        return { ...state, sheet: { ...state.sheet, speedPool } };
+      })
+      .with({ t: "setPoolCurrent", pool: "Intellect" }, ({ currentValue }) => {
+        let intellectPool = { ...state.sheet.intellectPool };
+        currentValue = clamp(currentValue, 0, intellectPool.maxValue);
+        intellectPool.currentValue = currentValue;
+        return { ...state, sheet: { ...state.sheet, intellectPool } };
+      })
       // Stat Pool Edge
-      .with(
-        { t: "setPoolEdge", pool: P.when(pool => pool === "Might") },
-        ({ edge }) => {
-          edge = clamp(edge, 0, 6);
-          let mightPool = { ...state.sheet.mightPool, edge };
-          return { ...state, sheet: { ...state.sheet, mightPool } };
-        }
-      )
-      .with(
-        { t: "setPoolEdge", pool: P.when(pool => pool === "Speed") },
-        ({ edge }) => {
-          edge = clamp(edge, 0, 6);
-          let speedPool = { ...state.sheet.speedPool, edge };
-          return { ...state, sheet: { ...state.sheet, speedPool } };
-        }
-      )
-      .with(
-        { t: "setPoolEdge", pool: P.when(pool => pool === "Intellect") },
-        ({ edge }) => {
-          edge = clamp(edge, 0, 6);
-          let intellectPool = { ...state.sheet.intellectPool, edge };
-          return { ...state, sheet: { ...state.sheet, intellectPool } };
-        }
-      )
+      .with({ t: "setPoolEdge", pool: "Might" }, ({ edge }) => {
+        edge = clamp(edge, 0, 6);
+        let mightPool = { ...state.sheet.mightPool, edge };
+        return { ...state, sheet: { ...state.sheet, mightPool } };
+      })
+      .with({ t: "setPoolEdge", pool: "Speed" }, ({ edge }) => {
+        edge = clamp(edge, 0, 6);
+        let speedPool = { ...state.sheet.speedPool, edge };
+        return { ...state, sheet: { ...state.sheet, speedPool } };
+      })
+      .with({ t: "setPoolEdge", pool: "Intellect" }, ({ edge }) => {
+        edge = clamp(edge, 0, 6);
+        let intellectPool = { ...state.sheet.intellectPool, edge };
+        return { ...state, sheet: { ...state.sheet, intellectPool } };
+      })
       .otherwise(_ => state)
   );
 }
