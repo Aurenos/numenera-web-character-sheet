@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
-import { CharacterType } from "../lib/characterSheet";
-import { Action } from "../lib/reducer";
+import { CharacterType } from "../../lib/characterSheet";
+import { Action } from "../../lib/reducer";
 
 type OptionType = {
   value: string;

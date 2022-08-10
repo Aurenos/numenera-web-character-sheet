@@ -1,6 +1,6 @@
 import React from "react";
-import { StatPool, StatPoolName } from "../lib/characterSheet";
-import { Action } from "../lib/reducer";
+import { StatPool, StatPoolName } from "../../lib/characterSheet";
+import { Action } from "../../lib/reducer";
 
 interface StatPoolEditorProps {
   dispatch: React.Dispatch<Action>;

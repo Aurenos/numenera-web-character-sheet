@@ -1,5 +1,5 @@
 import React from "react";
-import { Action, State } from "../lib/reducer";
+import { Action, State } from "../../lib/reducer";
 import StatPoolEditor from "./StatPoolEditor";
 
 interface StatPoolsProps {
@@ -10,7 +10,7 @@ interface StatPoolsProps {
 const StatPools = (props: StatPoolsProps) => {
   const { dispatch, state } = props;
   return (
-    <div>
+    <section>
       <StatPoolEditor
         poolName='Might'
         pool={state.sheet.mightPool}
@@ -26,7 +26,7 @@ const StatPools = (props: StatPoolsProps) => {
         pool={state.sheet.intellectPool}
         dispatch={dispatch}
       />
-    </div>
+    </section>
   );
 };
 

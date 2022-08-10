@@ -1,5 +1,4 @@
-import React, { ReactEventHandler } from "react";
-import { Action } from "../lib/reducer";
+import React from "react";
 
 interface BasicInfoTextInputProps {
   handleChange: React.ChangeEventHandler<HTMLInputElement>;

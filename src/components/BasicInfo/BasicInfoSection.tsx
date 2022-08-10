@@ -1,5 +1,5 @@
 import React from "react";
-import { Action, State } from "../lib/reducer";
+import { Action, State } from "../../lib/reducer";
 import BasicInfoTextInput from "./BasicInfoTextInput";
 import CharacterTypeSelect from "./CharacterTypeSelect";
 
