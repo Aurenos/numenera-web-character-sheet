@@ -4,6 +4,7 @@ import { reducer } from "./lib/reducer";
 import BasicInfo from "./components/BasicInfo/BasicInfoSection";
 import StatPools from "./components/StatPools/StatPoolsSection";
 import SkillsSection from "./components/Skills/SkillsSection";
+import SpecialAbilitiesSection from "./components/SpecialAbility/SpecialAbilitiesSection";
 
 const initialState = {
   sheet: new CharacterSheet(),
@@ -25,6 +26,11 @@ function App() {
       <StatPools {...doThings} />
       <div className='divider' />
       <SkillsSection dispatch={dispatch} skills={state.sheet.skills} />
+      <div className='divider' />
+      <SpecialAbilitiesSection
+        dispatch={dispatch}
+        abilities={state.sheet.specialAbilities}
+      />
     </main>
   );
 }

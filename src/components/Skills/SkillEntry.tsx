@@ -11,7 +11,7 @@ interface SkillEntryProps {
 const SkillEntry = (props: SkillEntryProps) => {
   const { dispatch } = props;
   return (
-    <div className='flex flex-row space-x-2'>
+    <div className='flex flex-row space-x-2 mb-2'>
       <div className='tooltip tooltip-left' data-tip='Delete'>
         <button
           className='btn btn-sm btn-square btn-ghost opacity-50 rounded-none hover:opacity-100 hover:btn-error '
@@ -21,7 +21,7 @@ const SkillEntry = (props: SkillEntryProps) => {
         </button>
       </div>
       <input
-        className='input input-sm rounded-none'
+        className='input input-sm rounded-none text-center'
         type='text'
         placeholder='Skill Name'
         value={props.skill.name}

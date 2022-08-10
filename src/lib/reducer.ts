@@ -2,6 +2,7 @@ import CharacterSheet, {
   CharacterType,
   Skill,
   SkillProficiency,
+  SpecialAbility,
   StatPoolName,
 } from "./characterSheet";
 import { match, P } from "ts-pattern";
@@ -161,9 +162,7 @@ export function reducer(state: State, action: Action): State {
       .with({ t: "setSkillName" }, ({ id, name }) => {
         let { skills } = state.sheet;
         skills = skills.map(sk => {
-          if (sk.id === id) {
-            return { ...sk, name };
-          }
+          if (sk.id === id) return { ...sk, name };
           return sk;
         });
         return { ...state, sheet: { ...state.sheet, skills } };
@@ -171,12 +170,53 @@ export function reducer(state: State, action: Action): State {
       .with({ t: "setSkillProficiency" }, ({ id, proficiency }) => {
         let { skills } = state.sheet;
         skills = skills.map(sk => {
-          if (sk.id === id) {
-            return { ...sk, proficiency };
-          }
+          if (sk.id === id) return { ...sk, proficiency };
           return sk;
         });
         return { ...state, sheet: { ...state.sheet, skills } };
+      })
+      // Special Abilities
+      .with({ t: "addAbility" }, () => {
+        return {
+          ...state,
+          sheet: {
+            ...state.sheet,
+            specialAbilities: [
+              ...state.sheet.specialAbilities,
+              new SpecialAbility(),
+            ],
+          },
+        };
+      })
+      .with({ t: "removeAbility" }, ({ id }) => {
+        let abilities = state.sheet.specialAbilities;
+        abilities = abilities.filter(ability => ability.id !== id);
+        return {
+          ...state,
+          sheet: { ...state.sheet, specialAbilities: abilities },
+        };
+      })
+      .with({ t: "setAbilityName" }, ({ id, name }) => {
+        let abilities = state.sheet.specialAbilities;
+        abilities = abilities.map(ability => {
+          if (ability.id === id) return { ...ability, name };
+          return ability;
+        });
+        return {
+          ...state,
+          sheet: { ...state.sheet, specialAbilities: abilities },
+        };
+      })
+      .with({ t: "setAbilityDescription" }, ({ id, description }) => {
+        let abilities = state.sheet.specialAbilities;
+        abilities = abilities.map(ability => {
+          if (ability.id === id) return { ...ability, description };
+          return ability;
+        });
+        return {
+          ...state,
+          sheet: { ...state.sheet, specialAbilities: abilities },
+        };
       })
       .otherwise(_ => state)
   );

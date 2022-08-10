@@ -16,7 +16,7 @@ const SkillsSection = (props: SkillsSectionProps) => {
         <SkillEntry key={skill.id} skill={skill} dispatch={dispatch} />
       ))}
       <button
-        className='btn btn-primary mt-2'
+        className='btn btn-primary'
         onClick={() => dispatch({ t: "addSkill" })}
       >
         Add Skill
