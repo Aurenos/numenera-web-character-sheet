@@ -1,4 +1,8 @@
-import CharacterSheet, { CharacterType, StatPoolName } from "./characterSheet";
+import CharacterSheet, {
+  CharacterType,
+  SkillProficiency,
+  StatPoolName,
+} from "./characterSheet";
 import { match, P } from "ts-pattern";
 import { clamp, minCap } from "./utils";
 
@@ -20,12 +24,43 @@ type StatPoolActions =
   | { t: "setPoolCurrent"; pool: StatPoolName; currentValue: number }
   | { t: "setPoolEdge"; pool: StatPoolName; edge: number };
 
-export type Action = BasicInfoActions | StatPoolActions;
+// TODO: Implement
+type SkillActions =
+  | { t: "setSkillName"; id: string; name: string }
+  | { t: "setSkillProficiency"; id: string; proficiency: SkillProficiency }
+  | { t: "addSkill" }
+  | { t: "removeSkill"; id: string };
 
-// TODO: Skills
-// TODO: Equipment
-// TODO: Cyphers
-// TODO: Special Abilities
+// TODO: Implement
+type SpecialAbilityActions =
+  | { t: "setAbilityName"; id: string; name: string }
+  | { t: "setAbilityDescription"; id: string; description: string }
+  | { t: "addAbility" }
+  | { t: "removeAbility"; id: string };
+
+// TODO: Implement
+type EquipmentActions =
+  | { t: "setInventoryItemName"; id: string; name: string }
+  | { t: "setInventoryItemDescription"; id: string; description: string }
+  | { t: "addInventoryItem" }
+  | { t: "removeInventoryItem"; id: string }
+  | { t: "setArmor"; value: number };
+
+// TODO: Implement
+type CypherActions =
+  | { t: "setCypherName"; id: string; name: string }
+  | { t: "setCypherLevel"; id: string; level: number }
+  | { t: "setCypherDescription"; id: string; description: string }
+  | { t: "addCypher" }
+  | { t: "removeCypher"; id: string };
+
+export type Action =
+  | BasicInfoActions
+  | StatPoolActions
+  | SkillActions
+  | SpecialAbilityActions
+  | EquipmentActions
+  | CypherActions;
 
 // Praise be to the ts-pattern library
 export function reducer(state: State, action: Action): State {
