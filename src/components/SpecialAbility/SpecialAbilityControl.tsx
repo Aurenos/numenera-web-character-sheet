@@ -41,10 +41,11 @@ const SpecialAbilityControl = (props: SpecialAbilityControlProps) => {
       </div>
       <CollapsibleDescription
         description={ability.description}
+        placeholder='Ability Description'
         descVisible={descVisible}
         onChangeHandler={evt =>
           dispatch({
-            t: "setCypherDescription",
+            t: "setAbilityDescription",
             id: ability.id,
             description: evt.target.value,
           })

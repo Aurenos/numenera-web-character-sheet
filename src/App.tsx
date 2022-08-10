@@ -6,6 +6,7 @@ import StatPools from "./components/StatPools/StatPoolsSection";
 import SkillsSection from "./components/Skills/SkillsSection";
 import SpecialAbilitiesSection from "./components/SpecialAbility/SpecialAbilitiesSection";
 import CyphersSection from "./components/Cyphers/CyphersSection";
+import EquipmentSection from "./components/Equipment/EquipmentSection";
 
 const initialState = {
   sheet: new CharacterSheet(),
@@ -34,6 +35,8 @@ function App() {
       />
       <div className='divider' />
       <CyphersSection dispatch={dispatch} cyphers={state.sheet.cyphers} />
+      <div className='divider' />
+      <EquipmentSection dispatch={dispatch} inventory={state.sheet.inventory} />
     </main>
   );
 }

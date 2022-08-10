@@ -4,6 +4,7 @@ interface CollapsibleDescriptionProps {
   onChangeHandler: React.ChangeEventHandler<HTMLTextAreaElement>;
   descVisible: boolean;
   description: string;
+  placeholder: string;
 }
 
 const CollapsibleDescription = (props: CollapsibleDescriptionProps) => {
@@ -15,7 +16,7 @@ const CollapsibleDescription = (props: CollapsibleDescriptionProps) => {
       <div className='flex collapse-content'>
         <textarea
           className='textarea p-1 w-full rounded-none'
-          placeholder='Cypher Description'
+          placeholder={props.placeholder}
           value={description}
           onChange={onChangeHandler}
         />

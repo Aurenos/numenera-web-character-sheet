@@ -1,65 +1,52 @@
 import React, { useState } from "react";
-import { Cypher } from "../../lib/characterSheet";
+import { InventoryItem } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
 import CollapsibleDescription from "../CollectionControls/CollapsibleDescription";
 import DeleteButton from "../CollectionControls/DeleteButton";
 import DescriptionToggleButton from "../CollectionControls/DescriptionToggleButton";
 
-interface CypherControlProps {
+interface InventoryItemControlProps {
   dispatch: React.Dispatch<Action>;
-  cypher: Cypher;
+  item: InventoryItem;
 }
 
-const CypherControl = (props: CypherControlProps) => {
+const InventoryItemControl = (props: InventoryItemControlProps) => {
   const [descVisible, setDescVisible] = useState<boolean>(false);
-  const { dispatch, cypher } = props;
+  const { dispatch, item } = props;
   return (
     <div className='flex flex-col mb-2'>
       <div className='flex flex-row mb-2 space-x-2'>
         <DeleteButton
-          onClickHandler={() => dispatch({ t: "removeCypher", id: cypher.id })}
+          onClickHandler={() =>
+            dispatch({ t: "removeInventoryItem", id: item.id })
+          }
         />
-
         <input
           className='text-center'
           type='text'
-          placeholder='Cypher Name'
-          value={cypher.name}
+          placeholder='Item Name'
+          value={item.name}
           onChange={evt =>
             dispatch({
-              t: "setCypherName",
-              id: cypher.id,
+              t: "setInventoryItemName",
+              id: item.id,
               name: evt.target.value,
             })
           }
         />
-        <div className='tooltip' data-tip='Level'>
-          <input
-            className='input input-bordered input-sm w-16'
-            type='number'
-            value={cypher.level}
-            onChange={evt =>
-              dispatch({
-                t: "setCypherLevel",
-                id: cypher.id,
-                level: parseInt(evt.target.value),
-              })
-            }
-          />
-        </div>
         <DescriptionToggleButton
           onClickHandler={() => setDescVisible(!descVisible)}
           descVisible={descVisible}
         />
       </div>
       <CollapsibleDescription
-        description={cypher.description}
-        placeholder='Cypher Description'
+        description={item.description}
+        placeholder='Item Description'
         descVisible={descVisible}
         onChangeHandler={evt =>
           dispatch({
-            t: "setCypherDescription",
-            id: cypher.id,
+            t: "setInventoryItemDescription",
+            id: item.id,
             description: evt.target.value,
           })
         }
@@ -68,4 +55,4 @@ const CypherControl = (props: CypherControlProps) => {
   );
 };
 
-export default CypherControl;
+export default InventoryItemControl;

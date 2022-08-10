@@ -1,6 +1,7 @@
 import CharacterSheet, {
   CharacterType,
   Cypher,
+  InventoryItem,
   Skill,
   SkillProficiency,
   SpecialAbility,
@@ -39,7 +40,6 @@ type SpecialAbilityActions =
   | { t: "addAbility" }
   | { t: "removeAbility"; id: string };
 
-// TODO: Implement
 type EquipmentActions =
   | { t: "setInventoryItemName"; id: string; name: string }
   | { t: "setInventoryItemDescription"; id: string; description: string }
@@ -47,7 +47,6 @@ type EquipmentActions =
   | { t: "removeInventoryItem"; id: string }
   | { t: "setArmor"; value: number };
 
-// TODO: Implement
 type CypherActions =
   | { t: "setCypherName"; id: string; name: string }
   | { t: "setCypherLevel"; id: string; level: number }
@@ -229,7 +228,7 @@ export function reducer(state: State, action: Action): State {
       })
       .with({ t: "removeCypher" }, ({ id }) => {
         let cyphers = state.sheet.cyphers;
-        cyphers = cyphers.filter(ability => ability.id !== id);
+        cyphers = cyphers.filter(cypher => cypher.id !== id);
         return {
           ...state,
           sheet: { ...state.sheet, cyphers },
@@ -270,6 +269,45 @@ export function reducer(state: State, action: Action): State {
         };
       })
       // Equipment
+      .with({ t: "addInventoryItem" }, () => {
+        return {
+          ...state,
+          sheet: {
+            ...state.sheet,
+            inventory: [...state.sheet.inventory, new InventoryItem()],
+          },
+        };
+      })
+      .with({ t: "removeInventoryItem" }, ({ id }) => {
+        let inventory = state.sheet.inventory;
+        inventory = inventory.filter(item => item.id !== id);
+        return {
+          ...state,
+          sheet: { ...state.sheet, inventory },
+        };
+      })
+      .with({ t: "setInventoryItemName" }, ({ id, name }) => {
+        let inventory = state.sheet.inventory;
+        inventory = inventory.map(item => {
+          if (item.id === id) return { ...item, name };
+          return item;
+        });
+        return {
+          ...state,
+          sheet: { ...state.sheet, inventory: inventory },
+        };
+      })
+      .with({ t: "setInventoryItemDescription" }, ({ id, description }) => {
+        let inventory = state.sheet.inventory;
+        inventory = inventory.map(item => {
+          if (item.id === id) return { ...item, description };
+          return item;
+        });
+        return {
+          ...state,
+          sheet: { ...state.sheet, inventory: inventory },
+        };
+      })
       .otherwise(_ => state)
   );
 }
