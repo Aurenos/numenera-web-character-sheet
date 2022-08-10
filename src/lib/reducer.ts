@@ -72,7 +72,7 @@ export function reducer(state: State, action: Action): State {
         let intellectPool = { ...state.sheet.intellectPool, maxValue };
         return { ...state, sheet: { ...state.sheet, intellectPool } };
       })
-      // Stat Pool Curent Values
+      // Stat Pool Current Values
       .with({ t: "setPoolCurrent", pool: "Might" }, ({ currentValue }) => {
         let mightPool = { ...state.sheet.mightPool };
         currentValue = clamp(currentValue, 0, mightPool.maxValue);
