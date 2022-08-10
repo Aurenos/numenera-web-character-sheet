@@ -1,5 +1,6 @@
 import CharacterSheet, {
   CharacterType,
+  Cypher,
   Skill,
   SkillProficiency,
   SpecialAbility,
@@ -26,14 +27,12 @@ type StatPoolActions =
   | { t: "setPoolCurrent"; pool: StatPoolName; currentValue: number }
   | { t: "setPoolEdge"; pool: StatPoolName; edge: number };
 
-// TODO: Implement
 type SkillActions =
   | { t: "setSkillName"; id: string; name: string }
   | { t: "setSkillProficiency"; id: string; proficiency: SkillProficiency }
   | { t: "addSkill" }
   | { t: "removeSkill"; id: string };
 
-// TODO: Implement
 type SpecialAbilityActions =
   | { t: "setAbilityName"; id: string; name: string }
   | { t: "setAbilityDescription"; id: string; description: string }
@@ -218,6 +217,59 @@ export function reducer(state: State, action: Action): State {
           sheet: { ...state.sheet, specialAbilities: abilities },
         };
       })
+      // Cyphers
+      .with({ t: "addCypher" }, () => {
+        return {
+          ...state,
+          sheet: {
+            ...state.sheet,
+            cyphers: [...state.sheet.cyphers, new Cypher()],
+          },
+        };
+      })
+      .with({ t: "removeCypher" }, ({ id }) => {
+        let cyphers = state.sheet.cyphers;
+        cyphers = cyphers.filter(ability => ability.id !== id);
+        return {
+          ...state,
+          sheet: { ...state.sheet, cyphers },
+        };
+      })
+      .with({ t: "setCypherLevel" }, ({ id, level }) => {
+        level = clamp(level, 1, 10);
+        let cyphers = state.sheet.cyphers;
+        cyphers = cyphers.map(cypher => {
+          if (cypher.id === id) return { ...cypher, level };
+          return cypher;
+        });
+        return {
+          ...state,
+          sheet: { ...state.sheet, cyphers: cyphers },
+        };
+      })
+      .with({ t: "setCypherName" }, ({ id, name }) => {
+        let cyphers = state.sheet.cyphers;
+        cyphers = cyphers.map(cypher => {
+          if (cypher.id === id) return { ...cypher, name };
+          return cypher;
+        });
+        return {
+          ...state,
+          sheet: { ...state.sheet, cyphers: cyphers },
+        };
+      })
+      .with({ t: "setCypherDescription" }, ({ id, description }) => {
+        let cyphers = state.sheet.cyphers;
+        cyphers = cyphers.map(cypher => {
+          if (cypher.id === id) return { ...cypher, description };
+          return cypher;
+        });
+        return {
+          ...state,
+          sheet: { ...state.sheet, cyphers: cyphers },
+        };
+      })
+      // Equipment
       .otherwise(_ => state)
   );
 }
