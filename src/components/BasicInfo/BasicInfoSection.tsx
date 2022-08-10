@@ -64,7 +64,7 @@ const BasicInfo = (props: BasicInfoProps) => {
           />
         </label>
       </div>
-      <hr className='border my-2' />
+      <hr className='border border-dotted my-2' />
       <div className='flex flex-row space-x-4 justify-center'>
         {/* Character Tier */}
         <div className='form-control'>

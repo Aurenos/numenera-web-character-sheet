@@ -20,8 +20,9 @@ function App() {
   return (
     <main className='my-4 flex flex-col container'>
       <BasicInfo {...doThings} />
-      <hr className='border border-dotted my-4' />
+      <hr className='border my-4' />
       <StatPools {...doThings} />
+      <hr className='border my-4' />
     </main>
   );
 }
