@@ -8,3 +8,8 @@ data is saved to your browser's storage.
 
 I wanted to practice React + TypeScript and wanted
 a flexible Numenera character sheet.
+
+## 3rd Party Libraries (besides React)
+
+- [react-select](https://react-select.com/home)
+- [ts-pattern](https://github.com/gvergnaud/ts-pattern) ✨
