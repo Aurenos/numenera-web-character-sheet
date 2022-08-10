@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { SpecialAbility } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
+import CollapsibleDescription from "../CollectionControls/CollapsibleDescription";
+import DeleteButton from "../CollectionControls/DeleteButton";
+import DescriptionToggleButton from "../CollectionControls/DescriptionToggleButton";
 
 interface SpecialAbilityControlProps {
   dispatch: React.Dispatch<Action>;
@@ -13,14 +16,11 @@ const SpecialAbilityControl = (props: SpecialAbilityControlProps) => {
   return (
     <div className='flex flex-col mb-2'>
       <div className='flex flex-row mb-2 space-x-2'>
-        <div className='tooltip tooltip-left' data-tip='Delete'>
-          <button
-            className='btn btn-sm btn-square btn-ghost opacity-50 rounded-none hover:opacity-100 hover:btn-error '
-            onClick={() => dispatch({ t: "removeAbility", id: ability.id })}
-          >
-            —
-          </button>
-        </div>
+        <DeleteButton
+          onClickHandler={() =>
+            dispatch({ t: "removeAbility", id: ability.id })
+          }
+        />
         <input
           className='text-center'
           type='text'
@@ -34,31 +34,22 @@ const SpecialAbilityControl = (props: SpecialAbilityControlProps) => {
             })
           }
         />
-        <button
-          className='btn btn-sm btn-square btn-ghost text-xl text-gray-600'
-          onClick={() => setDescVisible(!descVisible)}
-        >
-          {descVisible ? "^" : "v"}
-        </button>
+        <DescriptionToggleButton
+          onClickHandler={() => setDescVisible(!descVisible)}
+          descVisible={descVisible}
+        />
       </div>
-      <div
-        className={`collapse collapse-${descVisible ? "open" : "close"} w-full`}
-      >
-        <div className='flex collapse-content'>
-          <textarea
-            className='textarea p-1 w-full rounded-none'
-            placeholder='Ability Description'
-            value={ability.description}
-            onChange={evt =>
-              dispatch({
-                t: "setAbilityDescription",
-                id: ability.id,
-                description: evt.target.value,
-              })
-            }
-          />
-        </div>
-      </div>
+      <CollapsibleDescription
+        description={ability.description}
+        descVisible={descVisible}
+        onChangeHandler={evt =>
+          dispatch({
+            t: "setCypherDescription",
+            id: ability.id,
+            description: evt.target.value,
+          })
+        }
+      />
     </div>
   );
 };

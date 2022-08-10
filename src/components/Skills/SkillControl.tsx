@@ -1,25 +1,23 @@
 import React from "react";
 import { Skill } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
+import DeleteButton from "../CollectionControls/DeleteButton";
 import SkillProficiencyControl from "./SkillProficiencyControl";
 
-interface SkillEntryProps {
+interface SkillControlProps {
   dispatch: React.Dispatch<Action>;
   skill: Skill;
 }
 
-const SkillEntry = (props: SkillEntryProps) => {
+const SkillControl = (props: SkillControlProps) => {
   const { dispatch } = props;
   return (
     <div className='flex flex-row space-x-2 mb-2'>
-      <div className='tooltip tooltip-left' data-tip='Delete'>
-        <button
-          className='btn btn-sm btn-square btn-ghost opacity-50 rounded-none hover:opacity-100 hover:btn-error '
-          onClick={() => dispatch({ t: "removeSkill", id: props.skill.id })}
-        >
-          —
-        </button>
-      </div>
+      <DeleteButton
+        onClickHandler={() =>
+          dispatch({ t: "removeSkill", id: props.skill.id })
+        }
+      />
       <input
         className='input input-sm rounded-none text-center'
         type='text'
@@ -42,4 +40,4 @@ const SkillEntry = (props: SkillEntryProps) => {
   );
 };
 
-export default SkillEntry;
+export default SkillControl;

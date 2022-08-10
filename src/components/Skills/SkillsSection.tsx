@@ -1,7 +1,7 @@
 import React from "react";
 import { Skill } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
-import SkillEntry from "./SkillEntry";
+import SkillControl from "./SkillControl";
 
 interface SkillsSectionProps {
   dispatch: React.Dispatch<Action>;
@@ -13,7 +13,7 @@ const SkillsSection = (props: SkillsSectionProps) => {
   return (
     <section className='mx-auto flex flex-col'>
       {props.skills.map(skill => (
-        <SkillEntry key={skill.id} skill={skill} dispatch={dispatch} />
+        <SkillControl key={skill.id} skill={skill} dispatch={dispatch} />
       ))}
       <button
         className='btn btn-primary'

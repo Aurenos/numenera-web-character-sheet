@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Cypher } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
+import CollapsibleDescription from "../CollectionControls/CollapsibleDescription";
+import DeleteButton from "../CollectionControls/DeleteButton";
+import DescriptionToggleButton from "../CollectionControls/DescriptionToggleButton";
 
 interface CypherControlProps {
   dispatch: React.Dispatch<Action>;
@@ -13,14 +16,10 @@ const CypherControl = (props: CypherControlProps) => {
   return (
     <div className='flex flex-col mb-2'>
       <div className='flex flex-row mb-2 space-x-2'>
-        <div className='tooltip tooltip-left' data-tip='Delete'>
-          <button
-            className='btn btn-sm btn-square btn-ghost opacity-50 rounded-none hover:opacity-100 hover:btn-error '
-            onClick={() => dispatch({ t: "removeCypher", id: cypher.id })}
-          >
-            —
-          </button>
-        </div>
+        <DeleteButton
+          onClickHandler={() => dispatch({ t: "removeCypher", id: cypher.id })}
+        />
+
         <input
           className='text-center'
           type='text'
@@ -48,31 +47,22 @@ const CypherControl = (props: CypherControlProps) => {
             }
           />
         </div>
-        <button
-          className='btn btn-sm btn-square btn-ghost text-xl text-gray-600'
-          onClick={() => setDescVisible(!descVisible)}
-        >
-          {descVisible ? "^" : "v"}
-        </button>
+        <DescriptionToggleButton
+          onClickHandler={() => setDescVisible(!descVisible)}
+          descVisible={descVisible}
+        />
       </div>
-      <div
-        className={`collapse collapse-${descVisible ? "open" : "close"} w-full`}
-      >
-        <div className='flex collapse-content'>
-          <textarea
-            className='textarea p-1 w-full rounded-none'
-            placeholder='Cypher Description'
-            value={cypher.description}
-            onChange={evt =>
-              dispatch({
-                t: "setCypherDescription",
-                id: cypher.id,
-                description: evt.target.value,
-              })
-            }
-          />
-        </div>
-      </div>
+      <CollapsibleDescription
+        description={cypher.description}
+        descVisible={descVisible}
+        onChangeHandler={evt =>
+          dispatch({
+            t: "setCypherDescription",
+            id: cypher.id,
+            description: evt.target.value,
+          })
+        }
+      />
     </div>
   );
 };
