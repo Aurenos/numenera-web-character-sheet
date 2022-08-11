@@ -22,7 +22,7 @@ function App() {
   }, [state]);
 
   return (
-    <main className='my-4 flex flex-col container font-sans'>
+    <main className='my-4 mx-12 flex flex-col container font-sans w-full lg:w-2/3'>
       <BasicInfo {...doThings} />
       <div className='divider' />
       <StatPools {...doThings} />
@@ -34,9 +34,17 @@ function App() {
         abilities={state.sheet.specialAbilities}
       />
       <div className='divider' />
-      <CyphersSection dispatch={dispatch} cyphers={state.sheet.cyphers} />
+      <CyphersSection
+        dispatch={dispatch}
+        cyphers={state.sheet.cyphers}
+        cypherLimit={state.sheet.cypherLimit}
+      />
       <div className='divider' />
-      <EquipmentSection dispatch={dispatch} inventory={state.sheet.inventory} />
+      <EquipmentSection
+        dispatch={dispatch}
+        inventory={state.sheet.inventory}
+        armor={state.sheet.armor}
+      />
     </main>
   );
 }

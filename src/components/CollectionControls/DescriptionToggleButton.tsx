@@ -8,12 +8,17 @@ interface DescriptionToggleButtonProps {
 const DescriptionToggleButton = (props: DescriptionToggleButtonProps) => {
   const { onClickHandler, descVisible } = props;
   return (
-    <button
-      className='btn btn-sm btn-square btn-ghost text-xl text-gray-600'
-      onClick={onClickHandler}
+    <div
+      className='tooltip tooltip-right'
+      data-tip={`${descVisible ? "Hide" : "Show"} Description`}
     >
-      {descVisible ? "^" : "v"}
-    </button>
+      <button
+        className='btn btn-sm btn-square btn-ghost text-xl text-gray-600'
+        onClick={onClickHandler}
+      >
+        {descVisible ? "^" : "v"}
+      </button>
+    </div>
   );
 };
 

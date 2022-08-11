@@ -45,14 +45,15 @@ type EquipmentActions =
   | { t: "setInventoryItemDescription"; id: string; description: string }
   | { t: "addInventoryItem" }
   | { t: "removeInventoryItem"; id: string }
-  | { t: "setArmor"; value: number };
+  | { t: "setArmor"; armor: number };
 
 type CypherActions =
   | { t: "setCypherName"; id: string; name: string }
   | { t: "setCypherLevel"; id: string; level: number }
   | { t: "setCypherDescription"; id: string; description: string }
   | { t: "addCypher" }
-  | { t: "removeCypher"; id: string };
+  | { t: "removeCypher"; id: string }
+  | { t: "setCypherLimit"; cypherLimit: number };
 
 export type Action =
   | BasicInfoActions
@@ -268,6 +269,10 @@ export function reducer(state: State, action: Action): State {
           sheet: { ...state.sheet, cyphers: cyphers },
         };
       })
+      .with({ t: "setCypherLimit" }, ({ cypherLimit }) => {
+        cypherLimit = minCap(cypherLimit, 2);
+        return { ...state, sheet: { ...state.sheet, cypherLimit } };
+      })
       // Equipment
       .with({ t: "addInventoryItem" }, () => {
         return {
@@ -307,6 +312,10 @@ export function reducer(state: State, action: Action): State {
           ...state,
           sheet: { ...state.sheet, inventory: inventory },
         };
+      })
+      .with({ t: "setArmor" }, ({ armor }) => {
+        armor = minCap(armor, 0);
+        return { ...state, sheet: { ...state.sheet, armor } };
       })
       .otherwise(_ => state)
   );

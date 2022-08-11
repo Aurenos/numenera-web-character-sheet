@@ -14,7 +14,7 @@ const SpecialAbilityControl = (props: SpecialAbilityControlProps) => {
   const [descVisible, setDescVisible] = useState<boolean>(false);
   const { dispatch, ability } = props;
   return (
-    <div className='flex flex-col mb-2'>
+    <div className='flex flex-col mb-2 border-b border-dotted border-slate-500'>
       <div className='flex flex-row mb-2 space-x-2'>
         <DeleteButton
           onClickHandler={() =>
@@ -22,7 +22,7 @@ const SpecialAbilityControl = (props: SpecialAbilityControlProps) => {
           }
         />
         <input
-          className='text-center'
+          className='text-center text-lg flex-grow input input-sm rounded-none'
           type='text'
           placeholder='Ability Name'
           value={ability.name}

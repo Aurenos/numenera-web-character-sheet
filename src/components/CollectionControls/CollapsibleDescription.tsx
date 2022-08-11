@@ -15,7 +15,7 @@ const CollapsibleDescription = (props: CollapsibleDescriptionProps) => {
     >
       <div className='flex collapse-content'>
         <textarea
-          className='textarea p-1 w-full rounded-none'
+          className='textarea w-full rounded-none bg-base-200 text-base'
           placeholder={props.placeholder}
           value={description}
           onChange={onChangeHandler}

@@ -11,8 +11,8 @@ interface BasicInfoProps {
 const BasicInfo = (props: BasicInfoProps) => {
   const { dispatch, state } = props;
   return (
-    <section className='mx-auto' id='basic-info'>
-      <div className='flex flex-row flex-wrap justify-center'>
+    <section id='basic-info'>
+      <div className='flex flex-row flex-wrap space-y-2 md:space-y-0'>
         {/* Character Name */}
         <label>
           <BasicInfoTextInput
@@ -65,7 +65,7 @@ const BasicInfo = (props: BasicInfoProps) => {
         </label>
       </div>
       <hr className='border border-dotted my-2' />
-      <div className='flex flex-row space-x-4 justify-center'>
+      <div className='flex flex-row space-x-4'>
         {/* Character Tier */}
         <div className='form-control'>
           <label className='label'>

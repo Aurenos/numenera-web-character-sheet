@@ -14,7 +14,7 @@ const InventoryItemControl = (props: InventoryItemControlProps) => {
   const [descVisible, setDescVisible] = useState<boolean>(false);
   const { dispatch, item } = props;
   return (
-    <div className='flex flex-col mb-2'>
+    <div className='flex flex-col mb-2 border-b border-dotted border-slate-500'>
       <div className='flex flex-row mb-2 space-x-2'>
         <DeleteButton
           onClickHandler={() =>
@@ -22,7 +22,7 @@ const InventoryItemControl = (props: InventoryItemControlProps) => {
           }
         />
         <input
-          className='text-center'
+          className='text-center flex-grow input input-sm text-lg rounded-none'
           type='text'
           placeholder='Item Name'
           value={item.name}

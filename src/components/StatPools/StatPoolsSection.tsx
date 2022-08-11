@@ -10,7 +10,7 @@ interface StatPoolsProps {
 const StatPools = (props: StatPoolsProps) => {
   const { dispatch, state } = props;
   return (
-    <section className='mx-auto'>
+    <section className=''>
       <StatPoolEditor
         poolName='Might'
         pool={state.sheet.mightPool}

@@ -14,14 +14,14 @@ const CypherControl = (props: CypherControlProps) => {
   const [descVisible, setDescVisible] = useState<boolean>(false);
   const { dispatch, cypher } = props;
   return (
-    <div className='flex flex-col mb-2'>
+    <div className='flex flex-col mb-2 border-b border-dotted border-slate-500'>
       <div className='flex flex-row mb-2 space-x-2'>
         <DeleteButton
           onClickHandler={() => dispatch({ t: "removeCypher", id: cypher.id })}
         />
 
         <input
-          className='text-center'
+          className='text-center flex-grow input input-sm text-lg rounded-none'
           type='text'
           placeholder='Cypher Name'
           value={cypher.name}
@@ -33,9 +33,10 @@ const CypherControl = (props: CypherControlProps) => {
             })
           }
         />
-        <div className='tooltip' data-tip='Level'>
+        <label className='input-group w-auto'>
+          <span className='px-2'>Level</span>
           <input
-            className='input input-bordered input-sm w-16'
+            className='input input-bordered input-sm w-12 text-lg text-center'
             type='number'
             value={cypher.level}
             onChange={evt =>
@@ -46,7 +47,7 @@ const CypherControl = (props: CypherControlProps) => {
               })
             }
           />
-        </div>
+        </label>
         <DescriptionToggleButton
           onClickHandler={() => setDescVisible(!descVisible)}
           descVisible={descVisible}

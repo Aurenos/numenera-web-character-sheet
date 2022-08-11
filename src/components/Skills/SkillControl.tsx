@@ -12,14 +12,14 @@ interface SkillControlProps {
 const SkillControl = (props: SkillControlProps) => {
   const { dispatch } = props;
   return (
-    <div className='flex flex-row space-x-2 mb-2'>
+    <div className='flex flex-row space-x-2 mb-2 border-b border-dotted border-slate-500 pb-2'>
       <DeleteButton
         onClickHandler={() =>
           dispatch({ t: "removeSkill", id: props.skill.id })
         }
       />
       <input
-        className='input input-sm rounded-none text-center'
+        className='input input-sm rounded-none text-center flex-grow text-lg'
         type='text'
         placeholder='Skill Name'
         value={props.skill.name}

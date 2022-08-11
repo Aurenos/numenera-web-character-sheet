@@ -11,16 +11,19 @@ interface SpecialAbilitiesSectionProps {
 const SpecialAbilitiesSection = (props: SpecialAbilitiesSectionProps) => {
   const { dispatch, abilities } = props;
   return (
-    <section className='mx-auto flex flex-col'>
-      {abilities.map(ability => (
-        <SpecialAbilityControl
-          key={ability.id}
-          dispatch={dispatch}
-          ability={ability}
-        />
-      ))}
+    <section className='flex flex-col prose'>
+      <h2>Special Abilities</h2>
+      <div className='flex flex-col'>
+        {abilities.map(ability => (
+          <SpecialAbilityControl
+            key={ability.id}
+            dispatch={dispatch}
+            ability={ability}
+          />
+        ))}
+      </div>
       <button
-        className='btn btn-primary'
+        className='btn btn-primary w-1/2 mx-auto'
         onClick={() => dispatch({ t: "addAbility" })}
       >
         Add Ability
