@@ -7,19 +7,32 @@ import SkillsSection from "./components/Skills/SkillsSection";
 import SpecialAbilitiesSection from "./components/SpecialAbility/SpecialAbilitiesSection";
 import CyphersSection from "./components/Cyphers/CyphersSection";
 import EquipmentSection from "./components/Equipment/EquipmentSection";
+import { DocumentRemoveIcon } from "@heroicons/react/outline";
 
 const initialState = {
   sheet: new CharacterSheet(),
 };
 
+const getInitialState = () => {
+  const json = localStorage.getItem("characterSheet");
+  if (json !== null && json !== undefined) {
+    const sheetData = JSON.parse(json);
+    return { sheet: sheetData };
+  } else {
+    return initialState;
+  }
+};
+
 function App() {
   //? Maybe create a context to pass down the state and dispatch fn
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const init = getInitialState();
+  const [state, dispatch] = useReducer(reducer, init);
   const doThings = { state, dispatch };
 
   useEffect(() => {
-    // TODO: implement auto-saving to local storage
-  }, [state]);
+    const json = JSON.stringify(state.sheet);
+    localStorage.setItem("characterSheet", json);
+  }, [state.sheet]);
 
   return (
     <main className='my-4 mx-12 flex flex-col container font-sans w-full lg:w-2/3'>
@@ -45,6 +58,17 @@ function App() {
         inventory={state.sheet.inventory}
         armor={state.sheet.armor}
       />
+      <div
+        className='absolute right-0 top-0 tooltip tooltip-left mr-2 mt-2'
+        data-tip='Reset Character Sheet'
+      >
+        <button
+          onClick={() => dispatch({ t: "resetSheet" })}
+          className='btn btn-square btn-secondary btn-outline'
+        >
+          <DocumentRemoveIcon className='h-6 w-6' />
+        </button>
+      </div>
     </main>
   );
 }

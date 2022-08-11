@@ -14,6 +14,8 @@ export type State = {
   sheet: CharacterSheet;
 };
 
+type GlobalActions = { t: "resetSheet" };
+
 type BasicInfoActions =
   | { t: "setCharName"; name: string }
   | { t: "setCharDescriptor"; descriptor: string }
@@ -56,6 +58,7 @@ type CypherActions =
   | { t: "setCypherLimit"; cypherLimit: number };
 
 export type Action =
+  | GlobalActions
   | BasicInfoActions
   | StatPoolActions
   | SkillActions
@@ -67,6 +70,10 @@ export type Action =
 export function reducer(state: State, action: Action): State {
   return (
     match<Action, State>(action)
+      // Global Actions
+      .with({ t: "resetSheet" }, () => {
+        return { ...state, sheet: new CharacterSheet() };
+      })
       // Basic Info
       .with({ t: "setCharName" }, ({ name }) => {
         return { ...state, sheet: { ...state.sheet, name } };
