@@ -11,5 +11,4 @@ a flexible Numenera character sheet.
 
 ## 3rd Party Libraries (besides React)
 
-- [react-select](https://react-select.com/home)
 - [ts-pattern](https://github.com/gvergnaud/ts-pattern) ✨
