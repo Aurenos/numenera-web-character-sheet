@@ -14,6 +14,12 @@ a flexible Numenera character sheet.
 ## To Do
 
 - Add confirmation for sheet reset (maybe also for collection item deletion)
+- Add ability to download character sheet as a json file
+- Make sections after basic info and pools collapsible
+- Add character types from Numenera Destiny
+  - Alternatively, maybe just make the character type field a text field to allow for custom character types from Cypher System core
+- See if I can split the reducer up into multiple reducers
+- Probably just make the sheet the root of the app state
 
 ## 3rd Party Libraries (besides React)
 
