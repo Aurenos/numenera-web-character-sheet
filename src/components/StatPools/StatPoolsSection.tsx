@@ -10,22 +10,25 @@ interface StatPoolsProps {
 const StatPools = (props: StatPoolsProps) => {
   const { dispatch, state } = props;
   return (
-    <section className=''>
-      <StatPoolEditor
-        poolName='Might'
-        pool={state.sheet.mightPool}
-        dispatch={dispatch}
-      />
-      <StatPoolEditor
-        poolName='Speed'
-        pool={state.sheet.speedPool}
-        dispatch={dispatch}
-      />
-      <StatPoolEditor
-        poolName='Intellect'
-        pool={state.sheet.intellectPool}
-        dispatch={dispatch}
-      />
+    <section className='flex flex-col prose'>
+      <h2>Pools</h2>
+      <div className='flex flex-row space-x-2'>
+        <StatPoolEditor
+          poolName='Might'
+          pool={state.sheet.mightPool}
+          dispatch={dispatch}
+        />
+        <StatPoolEditor
+          poolName='Speed'
+          pool={state.sheet.speedPool}
+          dispatch={dispatch}
+        />
+        <StatPoolEditor
+          poolName='Intellect'
+          pool={state.sheet.intellectPool}
+          dispatch={dispatch}
+        />
+      </div>
     </section>
   );
 };
