@@ -17,12 +17,12 @@ const StatPoolEditor = (props: StatPoolEditorProps) => {
     .with("Intellect", () => "bg-blue-300")
     .exhaustive();
   return (
-    <div className='flex flex-col border border-neutral'>
+    <div className='flex flex-col border border-neutral rounded-lg'>
       <h4 className='mx-auto my-0'>{props.poolName}</h4>
       <div className='grid grid-cols-2 grid-rows-2'>
         <div className='col-span-2 flex flex-col border-b p-1 border-neutral'>
           <input
-            className='input input-ghost w-full mx-auto text-2xl text-center border-none focus:outline-none'
+            className='input input-ghost w-full mx-auto text-2xl text-center border-none focus:outline-none focus:bg-transparent'
             type='number'
             value={props.pool.currentValue}
             onChange={evt =>
@@ -36,7 +36,7 @@ const StatPoolEditor = (props: StatPoolEditorProps) => {
           <span className='text-xs mx-auto'>Current</span>
         </div>
         <div
-          className={`flex flex-col p-1 border-r border-neutral ${poolColor}`}
+          className={`flex flex-col p-1 border-r border-neutral rounded-bl-lg ${poolColor}`}
         >
           <input
             className='input input-ghost w-full mx-auto text-xl text-center border-none focus:outline-none focus:bg-transparent'
@@ -52,7 +52,7 @@ const StatPoolEditor = (props: StatPoolEditorProps) => {
           />
           <span className='text-xs mx-auto'>Maximum</span>
         </div>
-        <div className={`flex flex-col p-1 ${poolColor}`}>
+        <div className={`flex flex-col p-1 rounded-br-lg ${poolColor}`}>
           <input
             className='input input-ghost w-full mx-auto text-lg text-center border-none focus:outline-none focus:bg-transparent'
             type='number'

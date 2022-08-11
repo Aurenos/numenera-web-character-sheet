@@ -11,27 +11,25 @@ interface BasicInfoProps {
 const BasicInfo = (props: BasicInfoProps) => {
   const { dispatch, state } = props;
   return (
-    <section id='basic-info'>
-      <div className='flex flex-row flex-wrap space-y-2 md:space-y-0'>
+    <section className='flex flex-row space-x-2'>
+      <div className='flex flex-col text-center space-y-2 p-2 w-1/2 rounded-lg border-2'>
         {/* Character Name */}
-        <label>
-          <BasicInfoTextInput
-            className='text-right'
-            type='text'
-            placeholder='Character Name'
-            currentValue={state.sheet.name}
-            handleChange={evt =>
-              dispatch({
-                t: "setCharName",
-                name: evt.target.value,
-              })
-            }
-          />
-          <span className='mx-2 text-lg'>is a</span>
-        </label>
+        <BasicInfoTextInput
+          className='text-center border-none text-primary'
+          type='text'
+          placeholder='Character Name'
+          currentValue={state.sheet.name}
+          handleChange={evt =>
+            dispatch({
+              t: "setCharName",
+              name: evt.target.value,
+            })
+          }
+        />
+        <span className='text-lg'>is a</span>
         {/* Character Descriptor */}
         <BasicInfoTextInput
-          className='text-center mr-2 w-28'
+          className='text-center border-none text-primary'
           type='text'
           placeholder='Descriptor'
           currentValue={state.sheet.descriptor}
@@ -44,35 +42,33 @@ const BasicInfo = (props: BasicInfoProps) => {
         />
         {/* Character Type */}
         <CharacterTypeSelect
-          className='font-sans min-h-12 leading-8 text-lg'
+          className='font-sans text-lg input-primary text-primary'
           dispatch={dispatch}
           characterType={state.sheet.characterType}
         />
         {/* Character Focus */}
-        <label>
-          <span className='mx-2 text-lg'>who</span>
-          <BasicInfoTextInput
-            type='text'
-            placeholder='Focus'
-            currentValue={state.sheet.focus}
-            handleChange={evt =>
-              dispatch({
-                t: "setCharFocus",
-                focus: evt.target.value,
-              })
-            }
-          />
-        </label>
+        <span className='text-lg'>who</span>
+        <BasicInfoTextInput
+          className='text-center border-none text-primary'
+          type='text'
+          placeholder='Focus'
+          currentValue={state.sheet.focus}
+          handleChange={evt =>
+            dispatch({
+              t: "setCharFocus",
+              focus: evt.target.value,
+            })
+          }
+        />
       </div>
-      <hr className='border border-dotted my-2' />
       <div className='flex flex-row space-x-4'>
         {/* Character Tier */}
         <div className='form-control'>
           <label className='label'>
-            <span className='label-text'>Tier</span>
+            <span className='label-text mx-auto'>Tier</span>
           </label>
           <BasicInfoTextInput
-            className='input-bordered w-12 text-center input-secondary'
+            className='input-bordered w-12 text-center input-primary'
             type='number'
             currentValue={state.sheet.tier}
             handleChange={evt =>
@@ -86,10 +82,10 @@ const BasicInfo = (props: BasicInfoProps) => {
         {/* Character Effort */}
         <div className='form-control'>
           <label className='label'>
-            <span className='label-text'>Effort</span>
+            <span className='label-text mx-auto'>Effort</span>
           </label>
           <BasicInfoTextInput
-            className='input-bordered w-12 text-center input-accent'
+            className='input-bordered w-12 text-center input-primary'
             type='number'
             currentValue={state.sheet.effort}
             handleChange={evt =>
@@ -103,10 +99,10 @@ const BasicInfo = (props: BasicInfoProps) => {
         {/* Character XP */}
         <div className='form-control'>
           <label className='label'>
-            <span className='label-text'>XP</span>
+            <span className='label-text mx-auto'>XP</span>
           </label>
           <BasicInfoTextInput
-            className='input-bordered w-14 text-center input-success'
+            className='input-bordered w-12 text-center input-primary'
             type='number'
             currentValue={state.sheet.xp}
             handleChange={evt =>

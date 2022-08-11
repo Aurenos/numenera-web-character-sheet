@@ -8,7 +8,7 @@ interface BasicInfoTextInputProps {
   type: "text" | "number";
   className?: string;
 }
-const baseClasses = "input input-ghost hover:bg-indigo-50 text-lg px-1 ";
+const baseClasses = "input input-primary border-opacity-30 text-lg px-1 ";
 const BasicInfoTextInput = (props: BasicInfoTextInputProps) => {
   let classes = baseClasses.concat(props.className ?? "");
   return (
