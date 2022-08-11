@@ -22,7 +22,7 @@ const InventoryItemControl = (props: InventoryItemControlProps) => {
           }
         />
         <input
-          className='text-center flex-grow input input-sm text-lg rounded-none'
+          className='text-center flex-grow input input-sm text-lg rounded-sm input-accent border-none'
           type='text'
           placeholder='Item Name'
           value={item.name}

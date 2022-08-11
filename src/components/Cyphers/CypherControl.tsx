@@ -21,7 +21,7 @@ const CypherControl = (props: CypherControlProps) => {
         />
 
         <input
-          className='text-center flex-grow input input-sm text-lg rounded-none'
+          className='text-center flex-grow input input-sm text-lg rounded-sm input-accent border-none'
           type='text'
           placeholder='Cypher Name'
           value={cypher.name}

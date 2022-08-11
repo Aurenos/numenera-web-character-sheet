@@ -19,7 +19,7 @@ const SkillControl = (props: SkillControlProps) => {
         }
       />
       <input
-        className='input input-sm rounded-none text-center flex-grow text-lg'
+        className='input input-sm text-center flex-grow text-lg input-accent rounded-sm border-none'
         type='text'
         placeholder='Skill Name'
         value={props.skill.name}

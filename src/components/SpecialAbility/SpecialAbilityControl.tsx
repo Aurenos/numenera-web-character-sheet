@@ -22,7 +22,7 @@ const SpecialAbilityControl = (props: SpecialAbilityControlProps) => {
           }
         />
         <input
-          className='text-center text-lg flex-grow input input-sm rounded-none'
+          className='text-center text-lg flex-grow input input-sm input-accent rounded-sm border-none'
           type='text'
           placeholder='Ability Name'
           value={ability.name}
