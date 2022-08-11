@@ -8,6 +8,7 @@ import SpecialAbilitiesSection from "./components/SpecialAbility/SpecialAbilitie
 import CyphersSection from "./components/Cyphers/CyphersSection";
 import EquipmentSection from "./components/Equipment/EquipmentSection";
 import { DocumentRemoveIcon } from "@heroicons/react/outline";
+import CornerTools from "./components/Tools/CornerTools";
 
 const initialState = {
   sheet: new CharacterSheet(),
@@ -58,17 +59,7 @@ function App() {
         inventory={state.sheet.inventory}
         armor={state.sheet.armor}
       />
-      <div
-        className='absolute right-0 top-0 tooltip tooltip-left mr-2 mt-2'
-        data-tip='Reset Character Sheet'
-      >
-        <button
-          onClick={() => dispatch({ t: "resetSheet" })}
-          className='btn btn-square btn-secondary btn-outline'
-        >
-          <DocumentRemoveIcon className='h-6 w-6' />
-        </button>
-      </div>
+      <CornerTools {...doThings} />
     </main>
   );
 }
