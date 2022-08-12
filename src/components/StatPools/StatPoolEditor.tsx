@@ -16,13 +16,24 @@ const StatPoolEditor = (props: StatPoolEditorProps) => {
     .with("Speed", () => "bg-yellow-300")
     .with("Intellect", () => "bg-blue-300")
     .exhaustive();
+
+  const currentValueColor = match<number, string>(props.pool.currentValue)
+    .when(
+      value => value <= props.pool.maxValue * 0.3,
+      () => "red-500"
+    )
+    .when(
+      value => value < props.pool.maxValue,
+      () => "primary"
+    )
+    .otherwise(() => "neutral");
   return (
     <div className='flex flex-col border border-neutral rounded-lg'>
       <h4 className='mx-auto my-0'>{props.poolName}</h4>
       <div className='grid grid-cols-2 grid-rows-2'>
         <div className='col-span-2 flex flex-col border-b p-1 border-neutral'>
           <input
-            className='input input-ghost w-full mx-auto text-2xl text-center border-none focus:outline-none focus:bg-transparent'
+            className={`input bg-transparent w-full mx-auto text-2xl text-center border-none focus:outline-none focus:bg-transparent text-${currentValueColor} focus:text-${currentValueColor}`}
             type='number'
             value={props.pool.currentValue}
             onChange={evt =>
