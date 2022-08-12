@@ -48,7 +48,14 @@ const CornerTools = (props: CornerToolsProps) => {
         <ToolButton
           className='btn btn-square btn-error'
           toolTip='Reset Character Sheet'
-          onClickHandler={() => dispatch({ t: "resetSheet" })}
+          onClickHandler={() => {
+            dispatch({
+              t: "promptActionConfirmation",
+              action: { t: "resetSheet" },
+              confirmationText:
+                "Are you sure you want to reset your character sheet? This operation is irreversible.",
+            });
+          }}
         >
           <DocumentRemoveIcon className='h-6 w-6' />
         </ToolButton>

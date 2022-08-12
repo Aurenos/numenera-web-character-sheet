@@ -17,9 +17,18 @@ const InventoryItemControl = (props: InventoryItemControlProps) => {
     <div className='flex flex-col mb-2 border-b border-dotted border-slate-500'>
       <div className='flex flex-row mb-2 space-x-2'>
         <DeleteButton
-          onClickHandler={() =>
-            dispatch({ t: "removeInventoryItem", id: item.id })
-          }
+          onClickHandler={() => {
+            const action: Action = { t: "removeInventoryItem", id: item.id };
+            if (props.item.name !== "") {
+              dispatch({
+                t: "promptActionConfirmation",
+                action: action,
+                confirmationText: `Are you sure you want to delete the item: ${props.item.name}`,
+              });
+            } else {
+              dispatch(action);
+            }
+          }}
         />
         <input
           className='text-center flex-grow input input-sm text-lg rounded-sm input-accent border-none'

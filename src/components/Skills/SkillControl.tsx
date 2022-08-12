@@ -14,9 +14,18 @@ const SkillControl = (props: SkillControlProps) => {
   return (
     <div className='flex flex-row space-x-2 mb-2 border-b border-dotted border-slate-500 pb-2'>
       <DeleteButton
-        onClickHandler={() =>
-          dispatch({ t: "removeSkill", id: props.skill.id })
-        }
+        onClickHandler={() => {
+          const action: Action = { t: "removeSkill", id: props.skill.id };
+          if (props.skill.name !== "") {
+            dispatch({
+              t: "promptActionConfirmation",
+              action: action,
+              confirmationText: `Are you sure you want to delete the skill: ${props.skill.name}`,
+            });
+          } else {
+            dispatch(action);
+          }
+        }}
       />
       <input
         className='input input-sm text-center flex-grow text-lg input-accent rounded-sm border-none'

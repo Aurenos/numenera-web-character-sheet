@@ -17,7 +17,18 @@ const CypherControl = (props: CypherControlProps) => {
     <div className='flex flex-col mb-2 border-b border-dotted border-slate-500'>
       <div className='flex flex-row mb-2 space-x-2'>
         <DeleteButton
-          onClickHandler={() => dispatch({ t: "removeCypher", id: cypher.id })}
+          onClickHandler={() => {
+            const action: Action = { t: "removeCypher", id: cypher.id };
+            if (props.cypher.name !== "") {
+              dispatch({
+                t: "promptActionConfirmation",
+                action: action,
+                confirmationText: `Are you sure you want to delete the cypher: ${props.cypher.name}`,
+              });
+            } else {
+              dispatch(action);
+            }
+          }}
         />
 
         <input

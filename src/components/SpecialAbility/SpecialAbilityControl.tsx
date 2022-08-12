@@ -17,9 +17,18 @@ const SpecialAbilityControl = (props: SpecialAbilityControlProps) => {
     <div className='flex flex-col mb-2 border-b border-dotted border-slate-500'>
       <div className='flex flex-row mb-2 space-x-2'>
         <DeleteButton
-          onClickHandler={() =>
-            dispatch({ t: "removeAbility", id: ability.id })
-          }
+          onClickHandler={() => {
+            const action: Action = { t: "removeAbility", id: ability.id };
+            if (props.ability.name !== "") {
+              dispatch({
+                t: "promptActionConfirmation",
+                action: action,
+                confirmationText: `Are you sure you want to delete the ability: ${props.ability.name}`,
+              });
+            } else {
+              dispatch(action);
+            }
+          }}
         />
         <input
           className='text-center text-lg flex-grow input input-sm input-accent rounded-sm border-none'

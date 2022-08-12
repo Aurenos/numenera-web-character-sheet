@@ -13,7 +13,6 @@ a flexible Numenera character sheet.
 
 ## To Do
 
-- Add confirmation for sheet reset (maybe also for collection item deletion)
 - Add ability to import character sheet from a json file
 - Make sections after basic info and pools collapsible
 - Add character types from Numenera Destiny

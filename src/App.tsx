@@ -1,24 +1,26 @@
-import { useReducer, useEffect } from "react";
-import CharacterSheet from "./lib/characterSheet";
-import { reducer } from "./lib/reducer";
+import { useEffect, useReducer } from "react";
 import BasicInfo from "./components/BasicInfo/BasicInfoSection";
-import StatPools from "./components/StatPools/StatPoolsSection";
-import SkillsSection from "./components/Skills/SkillsSection";
-import SpecialAbilitiesSection from "./components/SpecialAbility/SpecialAbilitiesSection";
+import ConfirmActionModal from "./components/ConfirmActionModal";
 import CyphersSection from "./components/Cyphers/CyphersSection";
 import EquipmentSection from "./components/Equipment/EquipmentSection";
-import { DocumentRemoveIcon } from "@heroicons/react/outline";
+import SkillsSection from "./components/Skills/SkillsSection";
+import SpecialAbilitiesSection from "./components/SpecialAbility/SpecialAbilitiesSection";
+import StatPools from "./components/StatPools/StatPoolsSection";
 import CornerTools from "./components/Tools/CornerTools";
+import CharacterSheet from "./lib/characterSheet";
+import { reducer, State } from "./lib/reducer";
 
-const initialState = {
+const initialState: State = {
   sheet: new CharacterSheet(),
+  promptedAction: null,
+  confirmationText: "",
 };
 
 const getInitialState = () => {
   const json = localStorage.getItem("characterSheet");
   if (json !== null && json !== undefined) {
     const sheetData = JSON.parse(json);
-    return { sheet: sheetData };
+    return { ...initialState, sheet: sheetData };
   } else {
     return initialState;
   }
@@ -60,6 +62,11 @@ function App() {
         armor={state.sheet.armor}
       />
       <CornerTools {...doThings} />
+      <ConfirmActionModal
+        dispatch={dispatch}
+        promptedAction={state.promptedAction}
+        confirmationText={state.confirmationText}
+      />
     </main>
   );
 }

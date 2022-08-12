@@ -12,9 +12,17 @@ import { clamp, minCap } from "./utils";
 
 export type State = {
   sheet: CharacterSheet;
+  promptedAction: Action | null;
+  confirmationText: string;
 };
 
-type GlobalActions = { t: "resetSheet" };
+type GlobalActions =
+  | { t: "resetSheet" }
+  | {
+      t: "promptActionConfirmation";
+      action: Action | null;
+      confirmationText: string;
+    };
 
 type BasicInfoActions =
   | { t: "setCharName"; name: string }
@@ -324,6 +332,12 @@ export function reducer(state: State, action: Action): State {
         armor = minCap(armor, 0);
         return { ...state, sheet: { ...state.sheet, armor } };
       })
+      .with(
+        { t: "promptActionConfirmation" },
+        ({ action, confirmationText }) => {
+          return { ...state, promptedAction: action, confirmationText };
+        }
+      )
       .otherwise(_ => state)
   );
 }
