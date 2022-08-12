@@ -1,3 +1,4 @@
+import { match } from "ts-pattern";
 import CharacterSheet, {
   CharacterType,
   Cypher,
@@ -7,7 +8,6 @@ import CharacterSheet, {
   SpecialAbility,
   StatPoolName,
 } from "./characterSheet";
-import { match, P } from "ts-pattern";
 import { clamp, minCap } from "./utils";
 
 export type State = {

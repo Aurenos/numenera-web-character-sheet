@@ -1,5 +1,5 @@
 import React from "react";
-import { InventoryItem, SpecialAbility } from "../../lib/characterSheet";
+import { InventoryItem } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
 import InventoryItemControl from "./InventoryItemControl";
 

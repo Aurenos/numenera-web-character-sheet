@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { SpecialAbility } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
-import Collapsible from "../Tools/Collapsible";
-import CollapsibleToggleButton from "../Tools/CollapsibleToggleButton";
 import SpecialAbilityControl from "./SpecialAbilityControl";
 
 interface SpecialAbilitiesSectionProps {

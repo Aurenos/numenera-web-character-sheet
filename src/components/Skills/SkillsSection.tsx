@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Skill } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
-import CollapsibleToggleButton from "../Tools/CollapsibleToggleButton";
-import Collapsible from "../Tools/Collapsible";
 import SkillControl from "./SkillControl";
 
 interface SkillsSectionProps {

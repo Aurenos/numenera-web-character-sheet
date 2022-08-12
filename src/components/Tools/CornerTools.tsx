@@ -1,8 +1,8 @@
 import {
+  CodeIcon,
   DocumentRemoveIcon,
   SaveIcon,
   UploadIcon,
-  CodeIcon,
 } from "@heroicons/react/outline";
 import React from "react";
 import { Action, State } from "../../lib/reducer";
