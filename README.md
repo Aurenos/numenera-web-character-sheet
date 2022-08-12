@@ -23,3 +23,5 @@ a flexible Numenera character sheet.
 ## 3rd Party Libraries (besides React)
 
 - [ts-pattern](https://github.com/gvergnaud/ts-pattern) ✨
+- [TailwindCSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com)
