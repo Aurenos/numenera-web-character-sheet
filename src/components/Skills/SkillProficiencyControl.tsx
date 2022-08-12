@@ -12,7 +12,7 @@ const SkillProficiencyControl = (props: SkillProficiencyControlProps) => {
   const { proficiency, skillId, dispatch } = props;
   const baseClasses = "btn btn-square btn-sm rounded-none text-lg ";
   return (
-    <div className='form-control outline outline-1 flex flex-row'>
+    <div className='form-control flex flex-row border border-black'>
       <div className='tooltip' data-tip='Trained'>
         <button
           className={

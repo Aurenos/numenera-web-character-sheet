@@ -14,7 +14,7 @@ a flexible Numenera character sheet.
 ## To Do
 
 - Add ability to import character sheet from a json file
-- Make sections after basic info and pools collapsible
+- ~~Make sections after basic info and pools collapsible~~ I'll have to revisit this later. DaisyUI doesn't play well with nested `collapse`-able elements
 - Add character types from Numenera Destiny
   - Alternatively, maybe just make the character type field a text field to allow for custom character types from Cypher System core
 - See if I can split the reducer up into multiple reducers

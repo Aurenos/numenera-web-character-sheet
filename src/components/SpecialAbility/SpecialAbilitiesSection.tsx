@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { SpecialAbility } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
+import Collapsible from "../Tools/Collapsible";
+import CollapsibleToggleButton from "../Tools/CollapsibleToggleButton";
 import SpecialAbilityControl from "./SpecialAbilityControl";
 
 interface SpecialAbilitiesSectionProps {
@@ -10,9 +12,10 @@ interface SpecialAbilitiesSectionProps {
 
 const SpecialAbilitiesSection = (props: SpecialAbilitiesSectionProps) => {
   const { dispatch, abilities } = props;
+
   return (
     <section className='flex flex-col prose'>
-      <h2>Special Abilities</h2>
+      <h2>Special Abilities </h2>
       <div className='flex flex-col'>
         {abilities.map(ability => (
           <SpecialAbilityControl

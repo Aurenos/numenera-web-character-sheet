@@ -3,7 +3,7 @@ import { InventoryItem } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
 import CollapsibleDescription from "../CollectionControls/CollapsibleDescription";
 import DeleteButton from "../CollectionControls/DeleteButton";
-import DescriptionToggleButton from "../CollectionControls/DescriptionToggleButton";
+import CollapsibleToggleButton from "../Tools/CollapsibleToggleButton";
 
 interface InventoryItemControlProps {
   dispatch: React.Dispatch<Action>;
@@ -11,7 +11,7 @@ interface InventoryItemControlProps {
 }
 
 const InventoryItemControl = (props: InventoryItemControlProps) => {
-  const [descVisible, setDescVisible] = useState<boolean>(false);
+  const [descCollapsed, setDescCollapsed] = useState<boolean>(true);
   const { dispatch, item } = props;
   return (
     <div className='flex flex-col mb-2 border-b border-dotted border-slate-500'>
@@ -43,15 +43,16 @@ const InventoryItemControl = (props: InventoryItemControlProps) => {
             })
           }
         />
-        <DescriptionToggleButton
-          onClickHandler={() => setDescVisible(!descVisible)}
-          descVisible={descVisible}
+        <CollapsibleToggleButton
+          onClickHandler={() => setDescCollapsed(!descCollapsed)}
+          isCollapsed={descCollapsed}
+          toolTip={`${descCollapsed ? "Show" : "Hide"} Description`}
         />
       </div>
       <CollapsibleDescription
         description={item.description}
         placeholder='Item Description'
-        descVisible={descVisible}
+        descVisible={!descCollapsed}
         onChangeHandler={evt =>
           dispatch({
             t: "setInventoryItemDescription",

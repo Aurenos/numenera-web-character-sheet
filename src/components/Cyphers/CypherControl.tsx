@@ -3,7 +3,7 @@ import { Cypher } from "../../lib/characterSheet";
 import { Action } from "../../lib/reducer";
 import CollapsibleDescription from "../CollectionControls/CollapsibleDescription";
 import DeleteButton from "../CollectionControls/DeleteButton";
-import DescriptionToggleButton from "../CollectionControls/DescriptionToggleButton";
+import CollapsibleToggleButton from "../Tools/CollapsibleToggleButton";
 
 interface CypherControlProps {
   dispatch: React.Dispatch<Action>;
@@ -11,7 +11,7 @@ interface CypherControlProps {
 }
 
 const CypherControl = (props: CypherControlProps) => {
-  const [descVisible, setDescVisible] = useState<boolean>(false);
+  const [descCollapsed, setDescCollapsed] = useState<boolean>(true);
   const { dispatch, cypher } = props;
   return (
     <div className='flex flex-col mb-2 border-b border-dotted border-slate-500'>
@@ -59,15 +59,16 @@ const CypherControl = (props: CypherControlProps) => {
             }
           />
         </label>
-        <DescriptionToggleButton
-          onClickHandler={() => setDescVisible(!descVisible)}
-          descVisible={descVisible}
+        <CollapsibleToggleButton
+          onClickHandler={() => setDescCollapsed(!descCollapsed)}
+          isCollapsed={descCollapsed}
+          toolTip={`${descCollapsed ? "Show" : "Hide"} Description`}
         />
       </div>
       <CollapsibleDescription
         description={cypher.description}
         placeholder='Cypher Description'
-        descVisible={descVisible}
+        descVisible={!descCollapsed}
         onChangeHandler={evt =>
           dispatch({
             t: "setCypherDescription",
