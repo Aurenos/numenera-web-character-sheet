@@ -1,5 +1,5 @@
 import React from "react";
-import { Action } from "../lib/reducer";
+import { Action } from "../../lib/reducer";
 
 interface ConfirmActionModalProps {
   dispatch: React.Dispatch<Action>;

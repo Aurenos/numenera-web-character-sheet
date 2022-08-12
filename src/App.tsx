@@ -1,12 +1,13 @@
 import { useEffect, useReducer } from "react";
 import BasicInfo from "./components/BasicInfo/BasicInfoSection";
-import ConfirmActionModal from "./components/ConfirmActionModal";
+import ConfirmActionModal from "./components/Tools/ConfirmActionModal";
 import CyphersSection from "./components/Cyphers/CyphersSection";
 import EquipmentSection from "./components/Equipment/EquipmentSection";
 import SkillsSection from "./components/Skills/SkillsSection";
 import SpecialAbilitiesSection from "./components/SpecialAbility/SpecialAbilitiesSection";
 import StatPools from "./components/StatPools/StatPoolsSection";
 import CornerTools from "./components/Tools/CornerTools";
+import ImportSheetModal from "./components/Tools/ImportSheetModal";
 import CharacterSheet from "./lib/characterSheet";
 import { reducer, State } from "./lib/reducer";
 
@@ -14,6 +15,7 @@ const initialState: State = {
   sheet: new CharacterSheet(),
   promptedAction: null,
   confirmationText: "",
+  importDialogVisible: false,
 };
 
 const getInitialState = () => {
@@ -66,6 +68,10 @@ function App() {
         dispatch={dispatch}
         promptedAction={state.promptedAction}
         confirmationText={state.confirmationText}
+      />
+      <ImportSheetModal
+        dispatch={dispatch}
+        isVisible={state.importDialogVisible}
       />
     </main>
   );

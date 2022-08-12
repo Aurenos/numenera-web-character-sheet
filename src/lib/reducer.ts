@@ -14,6 +14,7 @@ export type State = {
   sheet: CharacterSheet;
   promptedAction: Action | null;
   confirmationText: string;
+  importDialogVisible: boolean;
 };
 
 type GlobalActions =
@@ -22,7 +23,9 @@ type GlobalActions =
       t: "promptActionConfirmation";
       action: Action | null;
       confirmationText: string;
-    };
+    }
+  | { t: "setImportDialogVisibility"; visible: boolean }
+  | { t: "importCharacterSheet"; sheet: CharacterSheet };
 
 type BasicInfoActions =
   | { t: "setCharName"; name: string }
@@ -81,6 +84,18 @@ export function reducer(state: State, action: Action): State {
       // Global Actions
       .with({ t: "resetSheet" }, () => {
         return { ...state, sheet: new CharacterSheet() };
+      })
+      .with(
+        { t: "promptActionConfirmation" },
+        ({ action, confirmationText }) => {
+          return { ...state, promptedAction: action, confirmationText };
+        }
+      )
+      .with({ t: "setImportDialogVisibility" }, ({ visible }) => {
+        return { ...state, importDialogVisible: visible };
+      })
+      .with({ t: "importCharacterSheet" }, ({ sheet }) => {
+        return { ...state, sheet };
       })
       // Basic Info
       .with({ t: "setCharName" }, ({ name }) => {
@@ -332,12 +347,6 @@ export function reducer(state: State, action: Action): State {
         armor = minCap(armor, 0);
         return { ...state, sheet: { ...state.sheet, armor } };
       })
-      .with(
-        { t: "promptActionConfirmation" },
-        ({ action, confirmationText }) => {
-          return { ...state, promptedAction: action, confirmationText };
-        }
-      )
       .otherwise(_ => state)
   );
 }

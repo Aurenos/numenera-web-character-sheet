@@ -1,6 +1,7 @@
 import {
   DocumentRemoveIcon,
-  DownloadIcon,
+  SaveIcon,
+  UploadIcon,
   CodeIcon,
 } from "@heroicons/react/outline";
 import React from "react";
@@ -34,16 +35,28 @@ const CornerTools = (props: CornerToolsProps) => {
     <div className='absolute right-0 top-0 mr-4 mt-4'>
       <div className='flex flex-col space-y-2'>
         <ToolButton
-          className='btn-accent'
+          className='btn-success'
           toolTip='Download Character Sheet Data'
           onClickHandler={() => {
+            const characterName = state.sheet.name;
             download(
-              "numenera-web-character-sheet.json",
+              `${
+                characterName !== "" ? characterName + "-" : ""
+              }numenera-web-character-sheet.json`,
               JSON.stringify(state.sheet)
             );
           }}
         >
-          <DownloadIcon className='h-6 w-6' />
+          <SaveIcon className='h-6 w-6' />
+        </ToolButton>
+        <ToolButton
+          className='btn-primary'
+          toolTip='Import Character Sheet'
+          onClickHandler={() =>
+            dispatch({ t: "setImportDialogVisibility", visible: true })
+          }
+        >
+          <UploadIcon className='h-6 w-6' />
         </ToolButton>
         <ToolButton
           className='btn btn-square btn-error'
